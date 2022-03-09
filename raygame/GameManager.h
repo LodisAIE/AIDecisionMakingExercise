@@ -1,11 +1,17 @@
 #pragma once
+#include <Vector2.h>
+#include "raylib.h"
+#include "Engine.h"
 
 class Character;
+class ScoreBoard;
+class Goal;
+class Actor;
 
 class GameManager
 {
 public:
-	void init(Character* agent1, Character* agent2, int pointsToWin);
+	void init(Character* agent1, Character* agent2, Actor* ball, int pointsToWin);
 
 	static GameManager* getInstance();
 
@@ -14,12 +20,30 @@ public:
 	int getAgent1Points() { return m_agent1Points; }
 	int getAgent2Points() { return m_agent2Points; }
 
-private:;
+	Character* getAgent1() { return m_agent1; }
+	Character* getAgent2() { return m_agent2; }
+
+	Goal* getLeftGoal() { return m_agent1Goal; }
+	Goal* getRightGoal() { return m_agent2Goal; }
+
+	void resetPositions();
+
+private:
+
+	void displayWinText(const char* winText, Color color);
+
 	static GameManager* m_instance;
 	Character* m_agent1;
 	Character* m_agent2;
+	ScoreBoard* m_scoreBoard;
 	int m_pointsToWin;
-	int m_agent1Points;
-	int m_agent2Points;
+	int m_agent1Points = 0;
+	int m_agent2Points = 0;
+	MathLibrary::Vector2 m_agent1SpawnPosition = { 250, 400 };
+	MathLibrary::Vector2 m_agent2SpawnPosition = { Engine::getScreenWidth() - 250.0f, 400 };
+	MathLibrary::Vector2 m_ballSpawnPosition = { Engine::getScreenWidth() / 2.0f, Engine::getScreenHeight() / 2.0f };
+	Goal* m_agent1Goal;
+	Goal* m_agent2Goal;
+	Actor* m_ball;
 };
 

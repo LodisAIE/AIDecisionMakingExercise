@@ -141,7 +141,7 @@ private:
     Transform2D* m_transform;
     Collider* m_collider;
     Component** m_components;
-    unsigned int m_componentCount;
+    unsigned int m_componentCount = 0;
     bool m_isActive = true;
 };
 

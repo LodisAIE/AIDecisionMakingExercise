@@ -1,5 +1,6 @@
 #pragma once
 #include "Agent.h"
+#include "GameManager.h"
 
 class Character :
     public Agent
@@ -21,10 +22,12 @@ public:
 private:
     void pickUpBall(Actor* ball);
     void dropBall();
-
+    friend void GameManager::resetPositions();
     Actor* m_ball;
     float m_health;
     bool m_hasBall;
     bool m_isAlive = true;
+    float m_respawnTime = 2;
+    float m_currentTime = 0;
 };
 

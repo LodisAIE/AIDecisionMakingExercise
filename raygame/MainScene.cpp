@@ -5,21 +5,27 @@
 #include "Player.h"
 #include "Agent.h"
 #include "SeekComponent.h"
+#include "Agent1.h"
+#include "Agent2.h"
+#include "CircleCollider.h"
+#include "Goal.h"
+#include "GameManager.h"
+#include "ScoreBoard.h"
+#include "Engine.h"
 
 void MainScene::start()
 {
-	Player* player = new Player(50, 50, "Player");
-	player->getTransform()->setScale({ 50,50 });
-	player->addComponent(new SpriteComponent("Images/player.png"));
-	MoveComponent* playerMove = player->addComponent<MoveComponent>();
+	Agent1* agent1 = new Agent1(250, 400, "Agent1", 50, 50, 3);
+	Agent2* agent2 = new Agent2(Engine::getScreenWidth() - 250.0f, 400, "Agent2", 50, 50, 3);
 
-	Agent* agent = new Agent();
-	agent->getTransform()->setScale({ 50,50 });
-	agent->setMaxForce(50);
-	agent->addComponent(new SpriteComponent("Images/enemy.png"));
-	SeekComponent* comp = new SeekComponent();
-	comp->setTarget(player);
-	agent->addComponent(comp);
-	addActor(player);
-	addActor(agent);
+	Actor* ball = new Actor(Engine::getScreenWidth() / 2.0f, Engine::getScreenHeight() / 2.0f, "Ball");
+	ball->addComponent(new SpriteComponent("Images/ball.png"));
+	ball->getTransform()->setScale({100, 100 });
+	ball->setCollider(new CircleCollider(1, ball));
+
+	GameManager::getInstance()->init(agent1, agent2, ball, 3);
+
+	addActor(agent1);
+	addActor(agent2);
+	addActor(ball);
 }

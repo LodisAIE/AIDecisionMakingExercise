@@ -107,6 +107,6 @@ private:
     static Scene** m_scenes;
     static int m_sceneCount;
     static int m_currentSceneIndex;
-    static const int m_screenWidth = 700;
+    static const int m_screenWidth = 1400;
     static const int m_screenHeight = 800;
 };
