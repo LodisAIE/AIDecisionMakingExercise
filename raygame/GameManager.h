@@ -2,10 +2,10 @@
 #include <Vector2.h>
 #include "raylib.h"
 #include "Engine.h"
+#include "Goal.h"
 
 class Character;
 class ScoreBoard;
-class Goal;
 class Actor;
 
 class GameManager
@@ -14,8 +14,6 @@ public:
 	void init(Character* agent1, Character* agent2, Actor* ball, int pointsToWin);
 
 	static GameManager* getInstance();
-
-	void increasePoints(Character* character);
 
 	int getAgent1Points() { return m_agent1Points; }
 	int getAgent2Points() { return m_agent2Points; }
@@ -26,13 +24,13 @@ public:
 	Goal* getLeftGoal() { return m_agent1Goal; }
 	Goal* getRightGoal() { return m_agent2Goal; }
 
-	void resetPositions();
-
 private:
 
 	void displayWinText(const char* winText, Color color);
-
+	void resetPositions();
 	static GameManager* m_instance;
+	void increasePoints(Character* character);
+	friend void Goal::onCollision(Actor*);
 	Character* m_agent1;
 	Character* m_agent2;
 	ScoreBoard* m_scoreBoard;
