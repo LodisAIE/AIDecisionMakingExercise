@@ -138,7 +138,7 @@ void Scene::update(float deltaTime)
     {
         for (int j = 0; j < m_actors.getLength(); j++)
         {
-            if (m_actors.getItem(i)->checkForCollision(m_actors.getItem(j)) && j != i && m_actors.getItem(j)->getStarted())
+            if (m_actors.getItem(i)->checkForCollision(m_actors.getItem(j)) && j != i && m_actors.getItem(j)->getStarted() && m_actors[i]->getActive() && m_actors[j]->getActive())
                 m_actors.getItem(i)->onCollision(m_actors.getItem(j));
         }
     }

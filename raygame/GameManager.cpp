@@ -20,7 +20,8 @@ void GameManager::init(Character* agent1, Character* agent2, Actor* ball, int po
 
 	m_agent1Goal = new Goal(0, 400, "LeftGoal", agent2);
 	m_agent2Goal = new Goal(Engine::getScreenWidth() - 10, 400, "RightGoal", agent1);
-
+	m_agent1Goal->m_onGoalScored = &GameManager::increasePoints;
+	m_agent2Goal->m_onGoalScored = &GameManager::increasePoints;
 	Engine::getCurrentScene()->addActor(m_agent1Goal);
 	Engine::getCurrentScene()->addActor(m_agent2Goal);
 }
@@ -39,6 +40,8 @@ void GameManager::increasePoints(Character* character)
 		m_agent1Points++;
 	else if (character == m_agent2)
 		m_agent2Points++;
+
+	resetPositions();
 
 	if (m_agent1Points >= m_pointsToWin)
 	{
@@ -61,6 +64,13 @@ void GameManager::resetPositions()
 
 	m_agent1->getTransform()->setWorldPostion(m_agent1SpawnPosition);
 	m_agent2->getTransform()->setWorldPostion(m_agent2SpawnPosition);
+	m_agent1->setActive(true);
+	m_agent2->setActive(true);
+	m_agent1->m_health = 3;
+	m_agent2->m_health = 3;
+	m_agent1->m_isInvincible = false;
+	m_agent2->m_isInvincible = false;
+
 	m_ball->getTransform()->setWorldPostion(m_ballSpawnPosition);
 
 }

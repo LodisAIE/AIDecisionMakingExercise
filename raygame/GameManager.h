@@ -2,35 +2,56 @@
 #include <Vector2.h>
 #include "raylib.h"
 #include "Engine.h"
-#include "Goal.h"
 
 class Character;
 class ScoreBoard;
 class Actor;
+class Goal;
 
 class GameManager
 {
 public:
 	void init(Character* agent1, Character* agent2, Actor* ball, int pointsToWin);
 
+	/// <summary>
+	/// Gets the single instance of the game manager object
+	/// </summary>
+	/// <returns></returns>
 	static GameManager* getInstance();
 
+	/// <summary>
+	/// Gets the the amount of points agent 1 currently has
+	/// </summary>
 	int getAgent1Points() { return m_agent1Points; }
+	/// <summary>
+	/// Gets the the amount of points agent 2 currently has
+	/// </summary>
 	int getAgent2Points() { return m_agent2Points; }
 
+	/// <summary>
+	/// Gets a reference to agent 1
+	/// </summary>
 	Character* getAgent1() { return m_agent1; }
+	/// <summary>
+	/// Gets a reference to agent 2
+	/// </summary>
 	Character* getAgent2() { return m_agent2; }
 
+	/// <summary>
+	/// Gets a reference to agent 2's goal
+	/// </summary>
 	Goal* getLeftGoal() { return m_agent1Goal; }
+	/// <summary>
+	/// Gets a reference to agent 1's goal
+	/// </summary>
 	Goal* getRightGoal() { return m_agent2Goal; }
 
 private:
+	void resetPositions();
 
 	void displayWinText(const char* winText, Color color);
-	void resetPositions();
 	static GameManager* m_instance;
 	void increasePoints(Character* character);
-	friend void Goal::onCollision(Actor*);
 	Character* m_agent1;
 	Character* m_agent2;
 	ScoreBoard* m_scoreBoard;

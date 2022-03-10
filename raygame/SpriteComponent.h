@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 class Texture2D;
+class Color;
 
 class SpriteComponent :
 	public Component
@@ -18,11 +19,12 @@ public:
 
 	int getHeight() { return m_height; }
 	int getWidth() { return m_width; }
-
+	void setColor(Color color);
 	void draw() override;
 
 private:
 	Texture2D* m_texture;
+	Color* m_color;
 	int m_width;
 	int m_height;
 };

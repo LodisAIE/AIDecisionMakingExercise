@@ -8,17 +8,24 @@
 SpriteComponent::SpriteComponent(Texture2D* texture) : Component::Component()
 {
 	m_texture = texture;
+	m_color = new Color(WHITE);
 }
 
 SpriteComponent::SpriteComponent(const char* path) : Component::Component()
 {
 	m_texture = new Texture2D(RAYLIB_H::LoadTexture(path));
+	m_color = new Color(WHITE);
 }
 
 SpriteComponent::~SpriteComponent()
 {
 	RAYLIB_H::UnloadTexture(*m_texture);
 	delete m_texture;
+}
+
+void SpriteComponent::setColor(Color color)
+{
+	*m_color = color;
 }
 
 void SpriteComponent::draw()
@@ -46,5 +53,5 @@ void SpriteComponent::draw()
 	float rotation = atan2(getOwner()->getTransform()->getGlobalMatrix()->m10, getOwner()->getTransform()->getGlobalMatrix()->m00);
 
 	//Draw the sprite
-	RAYLIB_H::DrawTextureEx(*m_texture, rayPos, (float)(rotation * 180.0f / PI), 1, WHITE);
+	RAYLIB_H::DrawTextureEx(*m_texture, rayPos, (float)(rotation * 180.0f / PI), 1, *m_color);
 }

@@ -19,10 +19,7 @@ void Goal::onCollision(Actor* actor)
 	if (!character || character != m_owner) return;
 
 	if (character->getHasBall())
-	{
-		GameManager::getInstance()->increasePoints(character);
-		GameManager::getInstance()->resetPositions();
-	}
+		(GameManager::getInstance()->*m_onGoalScored)(character);
 }
 
 void Goal::draw()
