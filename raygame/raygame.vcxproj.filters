@@ -77,9 +77,6 @@
     <ClCompile Include="InputComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="SeekComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="UITextComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -146,9 +143,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="InputComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SeekComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="SteeringComponent.h">
