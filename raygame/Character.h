@@ -27,7 +27,7 @@ public:
     virtual void start() override;
     /// <summary>
     /// Inherited from the Agent class. 
-    /// Initializes the sprite component
+    /// Handles invincibility and respawning
     /// </summary>
     virtual void update(float deltaTime) override;
 
