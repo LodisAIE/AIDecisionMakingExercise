@@ -20,7 +20,7 @@ void Agent2::onCollision(Actor* actor)
 
 void Agent2::start()
 {
-	Character::start(); Character::start();
+	Character::start();
 	SeekComponent* comp = new SeekComponent();
 	comp->setTarget(GameManager::getInstance()->getLeftGoal());
 	addComponent(comp);
