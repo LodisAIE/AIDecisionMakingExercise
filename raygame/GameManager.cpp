@@ -60,6 +60,16 @@ void GameManager::increasePoints(Character* character)
 	}
 }
 
+MathLibrary::Vector2 GameManager::getBallPosition()
+{
+	if (m_agent1->getHasBall())
+		return m_agent1->getTransform()->getWorldPosition();
+	else if (m_agent2->getHasBall())
+		return m_agent2->getTransform()->getWorldPosition();
+	else
+		return m_ball->getTransform()->getWorldPosition();
+}
+
 void GameManager::resetPositions()
 {
 	m_agent1->dropBall();
