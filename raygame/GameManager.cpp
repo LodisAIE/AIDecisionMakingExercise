@@ -36,6 +36,9 @@ GameManager* GameManager::getInstance()
 
 void GameManager::increasePoints(Character* character)
 {
+	if (character->m_ball != m_ball)
+		return;
+
 	if (character == m_agent1)
 		m_agent1Points++;
 	else if (character == m_agent2)
