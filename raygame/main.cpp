@@ -14,6 +14,7 @@
 
 int main()
 {
+	//test
 	//Hides Console window
 	//ShowWindow(GetConsoleWindow(), SW_HIDE);
 
