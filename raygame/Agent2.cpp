@@ -15,7 +15,7 @@ void Agent2::onCollision(Actor* actor)
 
 void Agent2::start()
 {
-	Character::start(); Character::start();
+	Character::start(); 
 	//add steering behaviours here
 }
 
