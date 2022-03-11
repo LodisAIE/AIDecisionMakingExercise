@@ -46,6 +46,12 @@ public:
 	/// </summary>
 	Goal* getRightGoal() { return m_agent2Goal; }
 
+	/// <summary>
+	/// Gets the ball's current position.
+	/// If the ball has been picked up, the location of the agent
+	/// carrying the ball is returned instead
+	/// </summary>
+	MathLibrary::Vector2 getBallPosition();
 private:
 	void resetPositions();
 
