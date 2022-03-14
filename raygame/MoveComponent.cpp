@@ -11,6 +11,9 @@ void MoveComponent::update(float deltaTime)
 	if (getVelocity().getMagnitude() > 0)
 		getOwner()->getTransform()->setForward(getVelocity().getNormalized());
 
+	if (getVelocity().getMagnitude() > getMaxSpeed())
+		setVelocity(getVelocity().getNormalized() * getMaxSpeed());
+
 	//Set the actors position to be the new position found
 	getOwner()->getTransform()->setLocalPosition(newPosition);
 }
