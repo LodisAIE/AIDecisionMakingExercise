@@ -47,11 +47,9 @@ public:
 	Goal* getRightGoal() { return m_agent2Goal; }
 
 	/// <summary>
-	/// Gets the ball's current position.
-	/// If the ball has been picked up, the location of the agent
-	/// carrying the ball is returned instead
+	/// Returns the ball. The ball is no longer updated when carried by an agent.
 	/// </summary>
-	MathLibrary::Vector2 getBallPosition();
+	Actor* getBall();
 private:
 	void resetPositions();
 
